@@ -142,3 +142,14 @@ impl Env {
         self.call(subr::vector, args)
     }
 }
+
+impl<'e, T: FromLisp<'e>> FromLisp<'e> for Vec<T> {
+    fn from_lisp(value: Value<'e>) -> Result<Self> {
+        let v: Vector = value.into_rust()?;
+        let mut ret = Vec::with_capacity(v.len());
+        for i in 0..v.len() {
+            ret.push(v.get(i)?)
+        }
+        Ok(ret)
+    }
+}

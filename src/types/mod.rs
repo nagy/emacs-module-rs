@@ -83,3 +83,13 @@ impl IntoLisp<'_> for bool {
         }
     }
 }
+
+impl<'e, T: IntoLisp<'e> + Copy> IntoLisp<'e> for Vec<T> {
+    fn into_lisp(self, env: &'e Env) -> Result<Value<'e>> {
+        let w = env.make_vector(self.len(), symbol::nil)?;
+        for i in 0..self.len() {
+            w.set(i, self[i])?
+        }
+        Ok(w.value())
+    }
+}
