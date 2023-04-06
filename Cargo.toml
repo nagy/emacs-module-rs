@@ -25,13 +25,13 @@ include = [
 [dependencies]
 thiserror = "1.0"
 anyhow = "1.0"
-ctor = "0.1.12"
+ctor = "0.2"
 once_cell = "1.2.0"
 emacs_module = { path = "emacs-module", version = "0.18.0" }
 emacs-macros = { path = "emacs-macros", version = "0.17.0" }
 
 [build-dependencies]
-rustc_version = "0.2.3"
+rustc_version = "0.4"
 
 [features]
 default = []
